@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- get css names from top of the profile page and copy local to get same colors. Note calling direct gets policy violations. See No 'Access-Control-Allow-Origin' header -->
+<meta content='#191b22' name='theme-color'>
+<title>dea42 avatar42 :computer: (@avatar42@dea42.social) -
+	dea42.social</title>
+<style>
+#srcLink {
+	font-size: 18px;
+	color: #FFFFFF;
+}
+
+.status {
+	padding: 16px;
+	min-height: 54px;
+	border-bottom: 1px solid #393f4f;
+	cursor: auto;
+	opacity: 1;
+	animation: fade .15s linear;
+	background: #313543;
+	/*    border-radius: 50px; */
+}
+
+.status__info {
+	font-size: 15px;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: left;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.status__content__text {
+	display: block;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+.display-name__account, .display-name__html, .status__relative-time {
+/*	display: block;*/
+	font-size: 10px;
+	line-height: 15px;
+	height: 18px;
+	order: 2;
+	flex: 0 0 auto;
+	color: #FFFFFF;
+}
+
+.status__display-name {
+	max-width: 100%;
+	display: flex;
+	font-size: 10px;
+	line-height: 15px;
+	align-items: Left;
+	gap: 10px;
+/*	overflow: hidden; */
+}
+
+.status__wrapper {
+	position: relative;
+}
+
+.status__content {
+	position: relative;
+}
+
+.emojione {
+	font-family: "object-fit:contain", inherit;
+	vertical-align: middle;
+	-o-object-fit: contain;
+	object-fit: contain;
+	margin: -.2ex 0.15em .2ex;
+	width: 16px;
+	height: 16px;
+}
+
+.account__avatar {
+	border-radius: 4px;
+	background: transparent no-repeat;
+	background-position: 50%;
+	background-clip: padding-box;
+/*	display: block; */
+	position: relative;
+/*	overflow: hidden; */
+	width: 46px;
+	height: 46px;
+}
+
+article {
+	display: block;
+	border-bottom: 10px solid #7f7f7f;
+}
+</style>
+</head>
+<body>
+	<span class="status status-public"
+		style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;">
+		<div title="Mastodon Timeline">
+			<a id="srcLink" href="https://dea42.social/@avatar42">My site's
+				status updates and some feeds of interest.</a>
+		<div id="mastodon-feed"
+			style="position: static; visibility: visible; display: block; flex-grow: 1;"
+			title="Mastodon Feed"></div>
+		</div>
+
+		<script>
+	      const feedContainer = document.querySelector('#mastodon-feed');
+	      <!--  acctID = '109428457664877578' -->
+			// replace with your Mastodon instance URL
+	      fetch('https://dea42.social/api/v1/accounts/109428457664877578/statuses?exclude_replies=false&limit=10')
+	        .then(response => response.json())
+	        .then(data => {
+	          data.forEach(status => {
+	        	console.log(status);
+	            const statusElement = document.createElement('article');
+	            // note the `${status.id}` is not '${status.id}'
+	            statusElement.setAttribute("data-id", `${status.id}`);
+	            let uri=`${status.uri}`;
+	        	console.log(uri);
+	            let url = new URL(uri);
+	            let host = url.origin;
+	            let emojis = `${status.account.emojis}`;
+				let emoji0 = "";
+		        if(emojis.length !== 0) {
+		            let shortcode = `:${status.account.emojis[0].shortcode}:`
+			        let emUrl = `${status.account.emojis[0].url}`
+		        	emoji0 = `<img draggable="false"
+						class="emojione custom-emoji" alt="${shortcode}"
+						title="${shortcode}"
+						src="${emUrl}"
+						data-original="${emUrl}"
+						data-static="${emUrl}">`;
+		        }
+	            statusElement.innerHTML = `
+				<div class="status status-public">
+					<div class="status__info">
+						<a href="${status.account.url}" title="${status.account.username}"
+							class="status__display-name" target="_blank"
+							rel="noopener noreferrer">
+							<img class="account__avatar"
+								src="${status.account.avatar}"
+								alt="${status.account.username}">
+						</a>
+						<a href="${status.uri}"
+							class="status__relative-time" target="_blank"
+							rel="noopener noreferrer">${status.created_at}
+						<strong class="display-name__html">${status.account.display_name}</strong> ${emoji0}
+						<span class="display-name__account">@${status.account.username}</span></a>
+					</div>
+					<div class="status__content status__content--with-action"
+						tabindex="0">
+						<div
+							class="status__content__text status__content__text--visible translate"
+							lang="en">
+							<p>
+							${status.content}
+							</p>
+						</div>
+					</div>
+				</div>`;
+	            feedContainer.appendChild(statusElement);
+	          });
+	        });
+	    </script>
+</body>
+</html>
