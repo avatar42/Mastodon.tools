@@ -6,7 +6,7 @@
 [My version](/src/main/webapp/mastodon.html)
 
 Sample usage screenshot
-![Sample usage](screenshots/Screenshot 2023-02-10 095240.png)
+![Sample usage](screenshots/Screenshot%202023-02-10%20095240.png)
 
 More of a template than a good example. Customize as needed and then call from an iframe like:
 
