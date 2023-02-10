@@ -5,6 +5,7 @@
 
 [My version](/src/main/webapp/mastodon.html)
 
+Sample usage screenshot
 ![Sample usage](screenshots/Screenshot 2023-02-10 095240.png)
 
 More of a template than a good example. Customize as needed and then call from an iframe like:
@@ -17,7 +18,7 @@ Example of response from server for ideas of what. (first toot only.)
 			[{"id":"109834812484209185","created_at":"2023-02-09T12:37:15.426Z","in_reply_to_id":null,"in_reply_to_account_id":null,"sensitive":false,"spoiler_text":"",
 			"visibility":"public","language":"en","uri":"https://dea42.social/users/avatar42/statuses/109834812484209185","url":"https://dea42.social/@avatar42/109834812484209185",
 			"replies_count":0,"reblogs_count":0,"favourites_count":0,"edited_at":null,
-			"content":"\u003cp\u003eWS4 Low Temp Alert:Temp 33.6°F Dewpoint:31.5°F Windchill:33.8°F\u003c/p\u003e","reblog":null,
+			"content":"\u003cp\u003eWS4 Low Temp Alert:Temp 33.6Â°F Dewpoint:31.5Â°F Windchill:33.8Â°F\u003c/p\u003e","reblog":null,
 			"application":{"name":"toot - a Mastodon CLI client","website":"https://github.com/ihabunek/toot"},
 			"account":{"id":"109428457664877578","username":"avatar42","acct":"avatar42","display_name":"dea42 avatar42 :computer:",
 				"locked":false,"bot":true,"discoverable":true,"group":false,"created_at":"2022-11-29T00:00:00.000Z",
