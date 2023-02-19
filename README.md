@@ -39,3 +39,6 @@ Example of response from server for ideas of what. (first toot only.)
 			"emojis":[],
 			"card":null,
 			"poll":null},
+
+
+[JavaScript version by YalePrivacyLab](https://github.com/YalePrivacyLab/mastodon-timeline-widget)
